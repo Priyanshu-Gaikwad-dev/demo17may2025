@@ -5,14 +5,14 @@ function App() {
   const [childdata, setChilddata] = useState("");
   const [childdata2, setChilddata2] = useState("");
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  //     const data = await response.json();
-  //     console.log(data);
-  //   }
-  //   fetchData();
-  // }, [])
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("https://jsonplaceholder.typicode.com/users");
+      const data = await response.json();
+      console.log(data);
+    }
+    fetchData();
+  }, [])
 
   return (
     <div className="app-container">
