@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { useEffect, useState } from 'react';
+import LoginForm from './LoginForm';
+import RegistrationForm from './RegistrationFrom';
 function App() {
-  const [count, setCount] = useState(0)
+  const [childdata, setChilddata] = useState("");
+  // const [childdata2, setChilddata2] = useState("");
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  //     const data = await response.json();
+  //     console.log(data);
+  //   }
+  //   fetchData();
+  // }, [])
 
   return (
-    <>
+    <div className="app-container">
+      <p>Login form data : <br />{childdata}</p>
+      {/* <p>registration form data : <br />{childdata2}</p> */}
+      <LoginForm SendData={setChilddata} />
+      {/* <RegistrationForm SendData2={setChilddata2} /> */}
+
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
