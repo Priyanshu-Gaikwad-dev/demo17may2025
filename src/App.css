@@ -1,42 +1,152 @@
-#root {
-  max-width: 1280px;
+/* Reset and base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+  color: #2c3e50;
+  margin: 0;
+  padding: 24px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  max-width: 900px;
   margin: 0 auto;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Clock */
+.clock {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #357edd;
   text-align: center;
+  letter-spacing: 0.04em;
+  user-select: none;
+  text-shadow: 0 0 6px #357edd44;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
+/* Card base style */
 .card {
-  padding: 2em;
+  background: #fff;
+  padding: 28px 32px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(53, 126, 221, 0.12);
+  transition: box-shadow 0.3s ease;
+  border: 1px solid #d7e3fc;
 }
 
-.read-the-docs {
-  color: #888;
+.card:hover {
+  box-shadow: 0 12px 32px rgba(53, 126, 221, 0.18);
+}
+
+/* Headings */
+.card h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1e2a4d;
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid #357edd;
+  padding-bottom: 8px;
+  max-width: fit-content;
+}
+
+.card h2 {
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: #4a5a75;
+  min-height: 40px; /* keeps height consistent even if empty */
+}
+
+/* Toggle paragraph */
+.card p {
+  margin-top: 22px;
+  font-size: 1rem;
+  color: #555f77;
+  user-select: none;
+}
+
+/* Button */
+.toggle-btn {
+  background: linear-gradient(135deg, #357edd 0%, #2a5cb8 100%);
+  border: none;
+  color: #fff;
+  padding: 10px 22px;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(53, 126, 221, 0.35);
+  transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.25s ease;
+  margin-left: 8px;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toggle-btn:hover {
+  background: linear-gradient(135deg, #2a5cb8 0%, #1e3f7d 100%);
+  box-shadow: 0 8px 20px rgba(42, 92, 184, 0.6);
+  transform: translateY(-2px);
+}
+
+.toggle-btn:focus-visible {
+  outline: 3px solid #82b1ff;
+  outline-offset: 3px;
+}
+
+/* Users List */
+.user-card {
+  border-radius: 12px;
+  background: #f9fbff;
+  padding: 16px 20px;
+  margin-top: 14px;
+  border: 1.5px solid #cbd7ff;
+  box-shadow: 0 3px 10px rgba(53, 126, 221, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+  box-shadow: 0 6px 18px rgba(53, 126, 221, 0.25);
+}
+
+.user-card h2 {
+  font-size: 1.2rem;
+  color: #2a3a63;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.user-card p {
+  font-size: 0.95rem;
+  color: #54668c;
+  margin: 2px 0;
+  user-select: text;
+}
+
+/* Responsive Improvements */
+@media (max-width: 600px) {
+  .app-container {
+    padding: 12px;
+  }
+
+  .card {
+    padding: 20px 18px;
+  }
+
+  .toggle-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
 }

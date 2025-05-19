@@ -1,64 +1,79 @@
-import {useState} from "react";
+import { useState } from "react";
 
-function LoginForm({SendData}: {SendData: (data: string) => void}) {
-  const [usernameLogin, setUsernameLogin] = useState("");
+interface LoginFormProps {
+  SendData: (data: string) => void;
+}
+
+function LoginForm({ SendData }: LoginFormProps) {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [data, setData] = useState("");
+  const [submittedData, setSubmittedData] = useState("");
 
   const handleLogin = () => {
-    const loginInfo = {
-      username: usernameLogin,
-      password: password,
+    const loginData = {
+      username,
+      password,
     };
-    const jsonData = JSON.stringify(loginInfo);
-    setData(jsonData);
+    const jsonData = JSON.stringify(loginData, null, 2);
+    setSubmittedData(jsonData);
     SendData(jsonData);
   };
 
   const handleReset = () => {
-    setUsernameLogin("");
+    setUsername("");
     setPassword("");
-    setData("");
+    setSubmittedData("");
     SendData("");
+    
   };
 
   return (
-    <div className="login-container">
-      <h1>Login Form</h1>
-      <div>
-        <p>usernameLogin:&nbsp;&nbsp;{usernameLogin}</p>
-        <p>
-          password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          {password}
-        </p>
-      </div>
-      <label>Username:</label>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input
-        type="text"
-        placeholder="Enter your username"
-        value={usernameLogin}
-        onChange={(e) => setUsernameLogin(e.target.value)}
-      />
-      <br />
-      <br />
-      <label>Password:</label>
-      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-      <input
-        type="password"
-        placeholder="Enter your password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br />
-      <br />
-      <button onClick={handleReset}>Reset</button>
-      &nbsp;
-      <button onClick={handleLogin}>Login</button>
-      {data && (
-        <div>
-          <h3>Submitted Data:</h3>
-          <pre>{data}</pre>
+    <div className="login-form">
+      <h2>Login Form</h2>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleLogin();
+        }}
+      >
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <br />
+          <input
+            id="username"
+            type="text"
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <br />
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <br />
+
+        <div className="form-buttons">
+          <button type="button" onClick={handleReset}>Reset</button>
+          <button type="submit">Login</button>
+        </div>
+      </form>
+
+      {submittedData && (
+        <div className="submitted-data">
+          <h3>Submitted Data</h3>
+          <pre>{submittedData}</pre>
         </div>
       )}
     </div>
